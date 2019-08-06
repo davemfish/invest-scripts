@@ -8,14 +8,15 @@ from osgeo import gdal, ogr
 LOGGER = logging.getLogger()
 logging.basicConfig(level='INFO')
 
-fetch_ray_vector_path = 'C:/Users/dmf/projects/invest_dev/coastal_vulnerability/MAR/intermediate/wind_wave/fetch_rays.gpkg'
+fetch_ray_vector_path = 'C:/Users/dmf/projects/invest_dev/coastal_vulnerability/bahamas/workspace_37/workspace_37/intermediate/wind_wave/fetch_rays.gpkg'
+# fetch_ray_vector_path = 'C:/Users/dmf/projects/invest_dev/coastal_vulnerability/MAR/intermediate/wind_wave/fetch_rays.gpkg'
 vector_info = pygeoprocessing.get_vector_info(fetch_ray_vector_path)
 model_resolution = 500
 file_suffix = ''
 base_bathy_path = 'C:/Users/dmf/projects/invest/data/invest-sample-data/Base_Data/Marine/DEMs/global_dem'
 target_bathy_path = 'bathy_utm.tif'
-working_dir = '.'
-target_fetch_depth_path = 'fetch_depth_v2.gpkg'
+working_dir = 'temp_zonal_stats'
+target_fetch_depth_path = 'fetch_depth_bahamas.gpkg'
 
 start = time.time()
 
@@ -27,7 +28,7 @@ cv.clip_and_project_raster(
 
 result = pygeoprocessing.zonal_statistics(
     (target_bathy_path, 1), fetch_ray_vector_path,
-    polygons_might_overlap=True)
+    polygons_might_overlap=False, working_dir=working_dir)
 
 shutil.copy(fetch_ray_vector_path, target_fetch_depth_path)
 
