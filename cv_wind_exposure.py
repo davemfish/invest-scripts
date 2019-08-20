@@ -4,9 +4,10 @@ import logging
 import time
 
 LOGGER = logging.getLogger()
-logging.basicConfig(level='INFO')
+logging.basicConfig(filename='wind_exposure_transact_MAR.log', level='INFO')
 
-WORKSPACE = 'C:/Users/dmf/projects/invest_dev/coastal_vulnerability/sampledata/intermediate'
+# WORKSPACE = 'C:/Users/dmf/projects/invest_dev/coastal_vulnerability/sampledata/intermediate'
+WORKSPACE = 'C:/Users/dmf/projects/invest_dev/coastal_vulnerability/MAR/intermediate'
 
 base_shore_point_vector_path = os.path.join(WORKSPACE, 'wind_wave/wwiii_shore_points.gpkg')
 landmass_polygon_pickle_path = os.path.join(WORKSPACE, 'shore_points/landmass_polygon.pickle')
